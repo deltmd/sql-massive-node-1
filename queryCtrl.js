@@ -36,15 +36,42 @@ module.exports = {
 
 	updateProduct: function(req, res) {
 
-		var product = [req.params.id, req.body.name, req.body.description, req.body.price, req.body.imgurl]
+		// NOTE: The way Jeremy taught:
 
-		db.queries.update_product(product, function(err, response) {
+		// var product = [req.params.id, req.body.name, req.body.description, req.body.price, req.body.imgurl]
+		//
+		// db.queries.update_product(product, function(err, response) {
+		// 	if (err) {
+		// 		res.send(err)
+		// 	}
+		// 	res.sendStatus(200)
+		// })
+
+		// NOTE: The faster way:
+
+		// var product = {
+		// 	id: req.params.id,
+		// 	price: req.body.price,
+		// 	description: req.body.description
+		// }
+
+		// db.products.update(product, function(err, response){
+		//   if (err) {
+		//     res.send(err)
+		//   }
+		//   res.send(response)
+		// });
+
+		// NOTE: The fastest way:
+
+		db.products.update(req.query, function(err, response) {
 			if (err) {
 				res.send(err)
 			}
-			res.sendStatus(200)
-		})
-	}, // FIXME: Detect parameters?
+			res.send(response)
+		});
+
+	},
 
 	deleteProduct: function(req, res) {
 

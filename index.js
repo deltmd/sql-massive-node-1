@@ -26,7 +26,9 @@ app.get('/api/products/:id', queryCtrl.readProduct)
 
 app.post('/api/products', queryCtrl.createProduct)
 
-app.put('/api/products/:id', queryCtrl.updateProduct)
+// app.put('/api/products/:id', queryCtrl.updateProduct)
+
+app.put('/api/products', queryCtrl.updateProduct)
 
 app.delete('/api/products/:id', queryCtrl.deleteProduct)
 
